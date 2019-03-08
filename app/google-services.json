@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "101643896546",
+    "firebase_url": "https://foodapp-a929f.firebaseio.com",
+    "project_id": "foodapp-a929f",
+    "storage_bucket": "foodapp-a929f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:101643896546:android:3b0d5822b4157d23",
+        "android_client_info": {
+          "package_name": "com.example.dell.foodapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "101643896546-26d8pbn07pnd8u3j8v4vgb3uvpq7kkab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dell.foodapp",
+            "certificate_hash": "b0a82676b76f6e660b9f0da6bcf0f03229551339"
+          }
+        },
+        {
+          "client_id": "101643896546-h2ffvtescbt8jk0k29g0p6ubib182017.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUbARwwGQi4xf6QmFIFfJNYhxyKONFNwA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "101643896546-h2ffvtescbt8jk0k29g0p6ubib182017.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
