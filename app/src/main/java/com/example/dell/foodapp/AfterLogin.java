@@ -40,8 +40,8 @@ public class AfterLogin extends AppCompatActivity {
         mDatabaseRef = database.getReference("offers");
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
+        recyclerView=(RecyclerView)findViewById(R.id.recycler_view);
 
-        //recyclerView=(RecyclerView)findViewById(R.id.recycler_view);
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
