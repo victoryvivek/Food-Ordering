@@ -1,5 +1,6 @@
 package com.example.dell.foodapp;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
@@ -7,8 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +32,7 @@ public class AfterLogin extends AppCompatActivity {
     RecyclerViewAdapter recyclerViewAdapter;
     RecyclerView recyclerView;
     FirebaseDatabase database;
+    FirebaseAuth mAuth;
     DatabaseReference mDatabaseRef, mDatabaseRefHotel, mDatabaseRefFood,mDatabaseRefComb;
     List<Upload> mUploads, mFoodUploads;
     List<HotelUpload> mHotelUploads;
@@ -49,11 +54,6 @@ public class AfterLogin extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -111,5 +111,30 @@ public class AfterLogin extends AppCompatActivity {
                 handler.post(runnable);
             }
         }, 250, 2500);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.option_menu,menu);
+
+        MenuItem item=menu.findItem(R.id.menu_logout);
+        mAuth=FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser()!=null){
+            item.setVisible(true);
+        }else{
+            item.setVisible(false);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_logout:
+                mAuth.signOut();
+                Intent intent=new Intent(AfterLogin.this,MainActivity.class);
+                startActivity(intent);
+        }
+        return true;
     }
 }

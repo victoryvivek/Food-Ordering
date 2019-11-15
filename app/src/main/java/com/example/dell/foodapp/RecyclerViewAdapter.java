@@ -1,6 +1,7 @@
 package com.example.dell.foodapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder>  {
     Context context;
     List<Upload> mFoodUploads;
     List<HotelUpload> mHotelUploads;
@@ -54,15 +55,31 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mFoodUploads.size();
     }
 
-    public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView price_textview,title_textview;
         ImageView restaurant_imageview_;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             price_textview=(TextView)itemView.findViewById(R.id.price_textview);
             title_textview=(TextView)itemView.findViewById(R.id.title_textview);
             restaurant_imageview_=(ImageView) itemView.findViewById(R.id.restaurant_imageview);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position =getAdapterPosition();
+            Upload cur_food_image=mFoodUploads.get(position);
+            HotelUpload hotel = mHotelUploads.get(position);
+            Intent intent=new Intent(context,Restaurant.class);
+            intent.putExtra("food_image",cur_food_image.getImageurl());
+            intent.putExtra("hotel_name",hotel.getName());
+            intent.putExtra("hotel_price",hotel.getPrice());
+            intent.putExtra("hotel_latitude",hotel.getLatitude());
+            intent.putExtra("hotel_longitude",hotel.getLongitude());
+            intent.putExtra("position",position);
+            context.startActivity(intent);
         }
     }
 }
